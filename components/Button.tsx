@@ -13,7 +13,7 @@ type Props = {
 }
 
 
-const Button = ({title, leftIcon, rightIcon,handleClick, isSubmitting, type, bgColor, textColor}: Props) => {
+const Button = ({title, leftIcon, rightIcon, handleClick, isSubmitting, type, bgColor, textColor}: Props) => {
   return(
     <button
     type={type || 'button'}

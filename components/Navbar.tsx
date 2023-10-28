@@ -1,40 +1,33 @@
-import Link from 'next/Link'
-import Image from 'next/image'
-import { NavLinks } from '@/constants'
-import AuthProviders from "./AuthProviders"
-import {getCurrentUser} from '@/lib/session';
-import {signOut} from 'next-auth/react';
-import ProfileMenu from "./ProfileMenu"
+import Image from "next/image";
+import { MouseEventHandler } from "react";
 
-const Navbar = async () => {
-  const session = await getCurrentUser();
-  return (
-    <nav className="flexBetween navbar navDes">
-     <div className="flex-1 flexStart gap-10">
-     <Link href="/"> <Image src="/logo.svg" width={150} height={53} alt="CraftedVisions"/></Link>
-
-
-    <ul className="xl:flex hidden text-small font-bold gap-7">
-    {NavLinks.map((link)=> (
-      <Link href={link.href} key={link.key} className="hover:text-base ease-in duration-300">
-        {link.text}
-      </Link>
-    ))}
-     </ul>
-     </div>
-
-     <div className="flexCenter gap-4">
-     {session?.user ? (
-       <>
-          <ProfileMenu session={session}/>
-         <Link href="/create-project"> <div className="border-none rounded-xl p-2.5 bg-purple-400 text-white ease-in duration-300 hover:bg-violet-300">Share work </div></Link>
-       </>
-     ) : (
-       <AuthProviders />
-     ) }
-     </div>
-     </nav>
-  )
+type ButtonProps = {
+    title: string;
+    type?: 'button' | 'submit';
+    leftIcon?: string | null;
+    rightIcon?: string | null;
+    handleClick?: MouseEventHandler | null;
+    isSubmitting?: boolean;
+    bgColor?: string;
+    textColor?: string;
 }
 
-export default Navbar
+ const defaultClickHandler: MouseEventHandler = () => {
+  };
+
+const Button = ({ title, type, leftIcon, isSubmitting, rightIcon, handleClick, bgColor, textColor }: ButtonProps) => {
+    return (
+        <button
+            type={type || 'button'}
+            disabled={isSubmitting}
+            className={`flexCenter gap-3 px-4 py-3 ${textColor || 'text-white'} ${isSubmitting ? 'bg-black/50' : bgColor || 'bg-primary-purple'} rounded-xl text-sm font-medium max-md:w-full`}
+            onClick={handleClick || defaultClickHandler}
+        >
+            {leftIcon && <Image src={leftIcon} width={14} height={14} alt="left" />}
+            {title}
+            {rightIcon && <Image src={rightIcon} width={14} height={14} alt="right" />}
+        </button>
+    )
+}
+
+export default Button

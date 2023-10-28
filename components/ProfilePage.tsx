@@ -1,4 +1,5 @@
 import { ProjectInterface, UserProfile } from '@/common.types'
+import {MouseEventHandler } from "react";
 import Image from 'next/image'
 
 import Link from 'next/link'
@@ -8,6 +9,9 @@ import ProjectCard from './ProjectCard';
 type Props = {
     user: UserProfile;
 }
+
+const defaultClickHandler: MouseEventHandler = () => {
+  };
 
 const ProfilePage = ({ user }: Props) => (
     <section className='flexCenter flex-col max-w-10xl w-full mx-auto paddings'>
@@ -23,6 +27,7 @@ const ProfilePage = ({ user }: Props) => (
                         leftIcon="/plus-round.svg"
                         bgColor="bg-light-white-400 !w-max"
                         textColor="text-black-100"
+                        handleClick={defaultClickHandler}
                     />
                     <Link href={`mailto:${user?.email}`}>
                         <Button title="Hire Me" leftIcon="/email.svg" />
