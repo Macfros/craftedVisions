@@ -68,23 +68,26 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
             </section>
 
             <section className="flexCenter flex-col mt-20">
+            <p className="text-xl font-bold mb-5"> Project Description </p>
                 <p className="max-w-5xl text-xl font-normal">
                     {projectDetails?.description}
                 </p>
 
                 <div className="flex flex-wrap mt-5 gap-5">
+
                     <Link href={projectDetails?.githubUrl} target="_blank" rel="noreferrer" className="flexCenter gap-2 tex-sm font-medium text-primary-purple">
-                        🖥 <span className="underline">Github</span>
+                        🖥 <span className="underline">Other Works</span>
                     </Link>
                     <Image src="/dot.svg" width={4} height={4} alt="dot" />
                     <Link href={projectDetails?.liveSiteUrl} target="_blank" rel="noreferrer" className="flexCenter gap-2 tex-sm font-medium text-primary-purple">
-                        🚀 <span className="underline">Live Site</span>
+                        🚀 <span className="underline">Portfolio Site</span>
                     </Link>
                 </div>
             </section>
 
             <section className="flexCenter w-full gap-8 mt-28">
                 <span className="w-full h-0.5 bg-light-white-200" />
+
                 <Link href={renderLink()} className="min-w-[82px] h-[82px]">
                     <Image
                         src={projectDetails?.createdBy?.avatarUrl}
