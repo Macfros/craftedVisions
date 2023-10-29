@@ -87,12 +87,6 @@ export const fetchAllProjects = (category?: string, endcursor?: string) => {
   return makeGraphQLRequest(query, variables);
 };
 
-// export const fetchAllProjects = (category?: string, endcursor?: string) => {
-//   client.setHeader('x-api-key', apiKey);
-
-//   return makeGraphQLRequest(getAllProjectsQuery, { category, endcursor });
-// };
-
 export const filterProjectsByCategory = (category?: string, endcursor?: string) => {
   client.setHeader('x-api-key', apiKey);
 
